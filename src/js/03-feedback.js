@@ -5,7 +5,7 @@ const refs = {
     input: document.querySelector('.feedback-form input'),
     textarea: document.querySelector('.feedback-form textarea'),
 };
- const formData = {};
+ const formData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
  populateFormData()
 refs.forma.addEventListener('submit', throttle(onFormaSubmit,500));
 
@@ -18,14 +18,12 @@ function populateFormData(){
     const parseSaveForma = JSON.parse(saveForma);
     if(saveForma){
         console.log(parseSaveForma);
-        refs.input.value = parseSaveForma.email;
-        refs.textarea.value = parseSaveForma.message;
+        refs.input.value = parseSaveForma.email || '';
+        refs.textarea.value = parseSaveForma.message || '';
     } 
 };
 function onFormaSubmit(evt) {
 evt.preventDefault();
-evt.target.reset();
+evt.currentTarget.reset();
 localStorage.removeItem(STORAGE_KEY);
 };
-
-
