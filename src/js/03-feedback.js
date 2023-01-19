@@ -24,6 +24,11 @@ function populateFormData(){
 };
 function onFormaSubmit(evt) {
 evt.preventDefault();
+if(!refs.input.value || !refs.textarea.value) {
+    alert ('fill in all the fields');
+}
+console.log(formData);
 evt.currentTarget.reset();
 localStorage.removeItem(STORAGE_KEY);
+
 };
